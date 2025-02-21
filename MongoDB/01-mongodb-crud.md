@@ -287,11 +287,11 @@ db.libros.InsertOne(
 https://www.mongodb.com/docs/manual/reference/operator/query/type/#mongodb-query-op.-type
 
 1.Mostrar tidis  los documentos donde el precio sea dooble
-
+````
 db.libros.find({precio:{$type:1}})
-
+````
 //solo apareceran de tipo double 
-
+````
 
 db.libros.find({precio:{$type:16}})
 
@@ -306,15 +306,15 @@ db.libros.isertOne({
 db.libros.find({precio:{$type:1}}, {_id:0, cantidad:0})
 
 
-
+````
 1.Seleccionar los documentos donde la editorial sea de typo string sea de tipo entero 
 db.libros.find({editorial:{type:16}})
 
 2.seleccionar todos los documentos donde la editorial sea String
-
+````
 db.libros.find({editorial:{$type:'string'}})
 db.libros.find({editorial:{$type:2}})
-
+````
 
 ## Practica de consultas
 
@@ -325,4 +325,169 @@ db.libros.find({editorial:{$type:2}})
 
 -En Local :
 Comando:
-mongoimport --db curso1 --Collections empleados --file empleados.json
+````
+
+mongoimport --db curso1 --Collections empleados --file empleados.json   
+
+````
+
+
+
+### Operador set
+1. Modificar un documento
+json
+ db.libros.updateOne({titulo:'Python para todos'},{$set:{titulo:'Java para todos'}})
+
+2. Actualizar el precio 100 y la cantidad a 50 para el _id:10
+
+json
+db.libros.updateOne({_id:10},{$set:{precio:100, cantidad:50}})
+
+
+
+#### Modificar documentos
+
+#### OPERADOR $imc  Y $mul
+update
+````
+json
+
+db.libros.updateMany(
+  {},
+  {$inc:{precio:5}}
+)
+
+````
+
+Actualizar con multiplicacion de 2 todos los documentos donde la cantidad sean mayores a 20
+
+````
+
+db.libros.updateMany({cantidad:{$gt:20}},{$mul:{cantidad:2}})
+
+````
+
+--Actualizar todos los documentos donde el precio sea mayor  sea mayor a 20 y se multiplique por 2 la cantidad y el precio 
+````
+db.libros.updateMany({precio:{$gt:20}},{$mul:{cantidad:2, precio:2}})
+
+````
+3. Remplazar Documentos (replace one)
+
+db.libros.replaceOne({_id:2},{$titulo:"De la Tierra a la luna",autor:"julio verne",precio: 500})
+
+## borra documentos 
+elimina multiples documentos
+````
+deleteOne - uno solo
+deleteMany - muchos
+
+````
+
+1.Eliminar el documento con el id 2
+````
+db.libros.deleteOne({_id:2})
+
+````
+### Expresiones Regulares
+
+2. Buscar los libros que en el titulo contengan la palabra json
+````
+db. libros. find({titulo:/JSON/})
+````
+3. Buscar todos los documentos que en titulo terminen en tos
+````
+db. libros. find({titulo:/tos$/})
+````
+
+4. Todos los documentos que en el titulo comiencen con J
+
+
+### Operador $regex
+[Operador Regex](https://www.mongodb.com/docs/manual/reference/operator/query/regex/)
+
+1. Seleccionar los libros que contengan con la palabra 'para' en titulo
+````
+json
+db.libros.find({titulo:{$regex:'para'}})
+````
+
+2. Seleccionar los libros que contengan con la palabra 'JSON' en titulo
+````
+json
+db.libros.find({titulo:{$regex:'JSON'}})
+````
+````
+json
+db.libros.find({titulo:{$regex:/JSON/}})
+````
+
+3. Distinguir entre mayusculas y minusculas 
+ 
+ ````
+ json
+db.libros.find({titulo:{$regex:/json/}}) 
+````
+-> no distingue entre mayusculas y minusculas
+````
+json
+db.libros.find({titulo:{$regex:/json/, $options:'i' }}) 
+````
+-> distingue entre mayusculas y minusculas
+````
+
+````
+
+-> Seleccionar todos los libros que comiencen con J o j
+
+
+
+# Metodo sort (Ordenar Documentos)
+
+1. Ordenar libros de manera Acendente por el precio 
+
+db.libros.find({},{titulo:1,precio:1,_id:0}).sort({precio:1})
+
+2. Ordenar los libros de manera decendente por el precio 
+db.libros.find({},{titulo:1,precio:1,_id:0}).sort({precio:-1})
+
+
+3. Ordenar los libros de manera asendente por la editorial y de manera decendente por el precio, mostrando el titulo
+el precio y la editorial 
+
+
+
+# Otros Metodos skip, limit, size
+
+db.libros.fine({},{titulo:1,precio:,_id:0,editorial:1}).size()
+
+
+-buscar todos los libros     pero mostrando los dos primeros 
+
+db.libros.find({},{titulo:1,editorial:!,precio:1,_id:0}).limit(2)
+
+
+
+
+--mostrar los 3  ultimos libros 
+
+db.libros:find({},{titulo:1,edeitorial:1,precio:1,_id:0}).sort({precio:-1}).limit(3)
+
+## Borrar Collecciones y bases de datos 
+
+use dbs
+db.createColleccion('ejemplo')
+show collections
+db.ejemplo.insertOne({nombre:'Chapuim'})
+
+db.ejemplo.drop()
+db.dropDatabase()
+
+
+
+
+
+
+
+
+
