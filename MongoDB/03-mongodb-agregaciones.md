@@ -1,1278 +1,344 @@
+# Agregaciones en MongoDB (Framework)
 
- 1. Contar los productos de tipo "medio" (usando un método básico):
-````json
+## Metodos para realizar agregaciones simples
+- distinct():Devuelve valores no duplicados
+- countDocuments():Cuenta los docuemnros em una coleccion
+- estimatedDocuments():Cuenta de manera aproximada dirante un periodo de tiempo
 
-db.productos.countDocuments({ tipo: "medio" })
+## Una Aggregation pipeline conta de una o mas etapas(stage) que procesan documentos
 
-resultado:
+1. Cada etapa realiza una operacion en los documentos de entrada. Por ejemplo, una fase de filtrar documentos, agrupar docuemntos y
+calcula valores
+2. Los documentos que se generen en na fase pasan a la siguiente fase.
+3. Puede devolver resultados para grupos de documentos como totales, maximo, minimo, etc
 
-25
+### Se utilia la clausula "aggregate"
 
-````
+- Existe una serie de operadores qjue se pueden utilizar para realiar operaciones. Se tiene distintos:
+etapa de comparacion, booleanos, aritmeticos, de cadena etc.
 
+1. contar los documentos de la coleccion libros 
+```json
+db.libros.countDocuments({})
+```
 
-2. Indicar con un distinct las empresas (fabricantes) que hay en la colección:
+2. Contar los documentos de la editorial Terra
+```json
+db.libros.countDocuments({editorial:{$eq:'Terra'}})
+```
+3. Seleccionar o mostar todos los libros mostrando solo la editorial
+```json
+db.libros.find({},{_id:0,editorial:1})
+```
+4. Mostrar todos los libros distintos a editorial
+```json
+db.libros.distinct('editorial')
+```
+[Documentacion de Agregacines](https://www.mongodb.com/docs/manual/aggregation/)
 
-````json
-db.productos.distinct("fabricante")
-
-````
-resultado
-
-````json
-PractiPracticas> db.productos.distinct("fabricante")
+## $match Una pipeline basica
+## Tienen funciones de etapa
+```json
+db.libros.aggregate(
 [
-  'A.O. Smith',
-  'Alere',
-  'American Tire Distributors Holdings',
-  'Anthem',
-  'Archrock',
-  'Ascena Retail Group',
-  'AutoNation',
-  'Best Buy',
-  'CIT Group',
-  'Cabot',
-  'Comcast',
-  'Comerica',
-  'Core-Mark Holding',
-  'DST Systems',
-  'Darling Ingredients',
-  'Delta Air Lines',
-  'Delta Tucker Holdings',
-  "Dick's Sporting Goods",
-  'First Solar',
-  'HCA Holdings',
-  'Hanesbrands',
-  'Hartford Financial Services Group',
-  'Hawaiian Holdings',
-  'HealthSouth',
-  'Hyatt Hotels',
-  'Kar Auction Services',
-  'Kelly Services',
-  'Kemper',
-  'Kimberly-Clark',
-  'Lennar',
-  'Mercury General',
-  'Mondelez International',
-  'Motorola Solutions',
-  'Nasdaq OMX Group',
-  'National Oilwell Varco',
-  'Nordstrom',
-  'OneMain Holdings',
-  'Oneok',
-  'Orbital ATK',
-  'Pep Boys-Mann',
-  'Pool',
-  'Precision Castparts',
-  'Primoris Services',
-  'Raymond James Financial',
-  'Seaboard',
-  'Securian Financial Group',
-  'Simon Property Group',
-  'State Farm Insurance Cos.',
-  'State Street Corp.',
-  'SunPower',
-  'TEGNA',
-  'Telephone & Data Systems',
-  'Total System Services',
-  'Tractor Supply',
-  'TransDigm Group',
-  'Trinity Industries',
-  'TrueBlue',
-  'Universal American',
-  'Universal Health Services',
-  'WGL Holdings',
-  "Wendy's",
-  'Werner Enterprises',
-  'WestRock',
-  'Williams-Sonoma'
-]
-
-````
-
-3. Usando aggregate, visualizar los productos que tengan más de 80 unidades:
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { unidades: { $gt: 80 } }
-  }
-])
-````
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $gt: 80 } }
-...   }
-... ])
-[
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce2'),
-    codigo: 0,
-    nombre: 'Fantastic Wooden Fish',
-    unidades: 95,
-    precio: 291,
-    fabricante: 'Kimberly-Clark',
-    tipo: 'avanzado'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce4'),
-    codigo: 2,
-    nombre: 'Small Soft Fish',
-    unidades: 96,
-    precio: 189,
-    fabricante: 'Primoris Services',
-    tipo: 'medio'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cee'),
-    codigo: 12,
-    nombre: 'Refined Concrete Salad',
-    unidades: 90,
-    precio: 129,
-    fabricante: 'Universal Health Services',
-    tipo: 'avanzado'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0d00'),
-    codigo: 30,
-    nombre: 'Small Rubber Pants',
-    unidades: 89,
-    precio: 16,
-    fabricante: 'Hanesbrands',
-    tipo: 'basico'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0d03'),
-    codigo: 33,
-    nombre: 'Generic Concrete Hat',
-    unidades: 82,
-    precio: 70,
-    fabricante: 'American Tire Distributors Holdings',
-    tipo: 'basico'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0d17'),
-    codigo: 53,
-    nombre: 'Licensed Plastic Hat',
-    unidades: 96,
-    precio: 38,
-    fabricante: 'Best Buy',
-    tipo: 'medio'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0d18'),
-    codigo: 54,
-    nombre: 'Generic Metal Sausages',
-    unidades: 84,
-    precio: 77,
-    fabricante: 'DST Systems',
-    tipo: 'medio'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0d1f'),
-    codigo: 61,
-    nombre: 'Sleek Rubber Keyboard',
-    unidades: 82,
-    precio: 33,
-    fabricante: 'Alere',
-    tipo: 'basico'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0d24'),
-    codigo: 66,
-    nombre: 'Incredible Concrete Fish',
-    unidades: 96,
-    precio: 336,
-    fabricante: 'Darling Ingredients',
-    tipo: 'medio'
+    { 
+  $match:{editorial:"Terra"}
   }
 ]
+)
+```
 
-
-````
-
-4. Con $project, visualizar solo el nombre, unidades y precio de los productos que tengan menos de 10 unidades:
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { unidades: { $lt: 10 } }
-  },
-  {
-    $project: { _id: 0, nombre: 1, unidades: 1, precio: 1 }
-  }
-])
-````
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $lt: 10 } }
-...   },
-...   {
-...     $project: { _id: 0, nombre: 1, unidades: 1, precio: 1 }
-...   }
-... ])
+## $project. Incluir y renombrar campos
+```json
+db.libros.aggregate(
 [
-  { nombre: 'Ergonomic Metal Ball', unidades: 5, precio: 246 },
-  { nombre: 'Handmade Plastic Hat', unidades: 7, precio: 253 },
-  { nombre: 'Ergonomic Metal Table', unidades: 0, precio: 94 },
-  { nombre: 'Practical Frozen Chips', unidades: 0, precio: 305 },
-  { nombre: 'Fantastic Metal Pants', unidades: 5, precio: 129 },
-  { nombre: 'Intelligent Frozen Sausages', unidades: 3, precio: 111 },
-  { nombre: 'Rustic Plastic Mouse', unidades: 5, precio: 24 }
-]
-
-
-````
-
-
-5. Con $project, poner el fabricante pero cambiar el nombre a "empresa". Usar el mismo comando anterior:
-
-
-````json
-
-db.productos.aggregate([
   {
-    $match: { unidades: { $lt: 10 } }
+    $match:{editorial:'Terra'}
   },
   {
-    $project: {
-      _id: 0,
-      nombre: 1,
-      unidades: 1,
-      precio: 1,
-      empresa: "$fabricante"
+    $project:{
+      _id:0,
+      titulo:1,
+      precio:1,
+      NombreEditorial:"$editorial",
+      editorial:1
     }
   }
-])
+]
+)
+```
 
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $lt: 10 } }
-...   },
-...   {
-...     $project: {
-...       _id: 0,
-...       nombre: 1,
-...       unidades: 1,
-...       precio: 1,
-...       empresa: "$fabricante"
-...     }
-...   }
-... ])
-
+## $sort. ordenaciones
+```json
 [
   {
-    nombre: 'Ergonomic Metal Ball',
-    unidades: 5,
-    precio: 246,
-    empresa: 'Seaboard'
+    $match:
+      
+      {
+        editorial: "Terra"
+      }
   },
   {
-    nombre: 'Handmade Plastic Hat',
-    unidades: 7,
-    precio: 253,
-    empresa: "Dick's Sporting Goods"
-  },
-  {
-    nombre: 'Ergonomic Metal Table',
-    unidades: 0,
-    precio: 94,
-    empresa: 'Kelly Services'
-  },
-  {
-    nombre: 'Practical Frozen Chips',
-    unidades: 0,
-    precio: 305,
-    empresa: 'Delta Air Lines'
-  },
-  {
-    nombre: 'Fantastic Metal Pants',
-    unidades: 5,
-    precio: 129,
-    empresa: 'OneMain Holdings'
-  },
-  {
-    nombre: 'Intelligent Frozen Sausages',
-    unidades: 3,
-    precio: 111,
-    empresa: 'A.O. Smith'
-  },
-  {
-    nombre: 'Rustic Plastic Mouse',
-    unidades: 5,
-    precio: 24,
-    empresa: 'Orbital ATK'
-  }
-]
-
-
-````
-
-6. Añadir un campo calculado llamado total que multiplica precio por unidades:
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { unidades: { $lt: 10 } }
-  },
-  {
-    $project: {
-      _id: 0,
-      nombre: 1,
-      unidades: 1,
-      precio: 1,
-      empresa: "$fabricante",
-      total: { $multiply: ["$precio", "$unidades"] }
-    }
-  }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $lt: 10 } }
-...   },
-...   {
-...     $project: {
-...       _id: 0,
-...       nombre: 1,
-...       unidades: 1,
-...       precio: 1,
-...       empresa: "$fabricante",
-...       total: { $multiply: ["$precio", "$unidades"] }
-...     }
-...   }
-... ])
-[
-  {
-    nombre: 'Ergonomic Metal Ball',
-    unidades: 5,
-    precio: 246,
-    empresa: 'Seaboard',
-    total: 1230
-  },
-  {
-    nombre: 'Handmade Plastic Hat',
-    unidades: 7,
-    precio: 253,
-    empresa: "Dick's Sporting Goods",
-    total: 1771
-  },
-  {
-    nombre: 'Ergonomic Metal Table',
-    unidades: 0,
-    precio: 94,
-    empresa: 'Kelly Services',
-    total: 0
-  },
-  {
-    nombre: 'Practical Frozen Chips',
-    unidades: 0,
-    precio: 305,
-    empresa: 'Delta Air Lines',
-    total: 0
-  },
-  {
-    nombre: 'Fantastic Metal Pants',
-    unidades: 5,
-    precio: 129,
-    empresa: 'OneMain Holdings',
-    total: 645
-  },
-  {
-    nombre: 'Intelligent Frozen Sausages',
-    unidades: 3,
-    precio: 111,
-    empresa: 'A.O. Smith',
-    total: 333
-  },
-  {
-    nombre: 'Rustic Plastic Mouse',
-    unidades: 5,
-    precio: 24,
-    empresa: 'Orbital ATK',
-    total: 120
-  }
-]
-
-
-
-````
-
-
-7. Hacer que el nombre salga en mayúsculas con el operador $toUpper:
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { unidades: { $lt: 10 } }
-  },
-  {
-    $project: {
-      _id: 0,
-      nombre: { $toUpper: "$nombre" },
-      unidades: 1,
-      precio: 1,
-      empresa: "$fabricante",
-      total: { $multiply: ["$precio", "$unidades"] }
-    }
-  }
-])
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $lt: 10 } }
-...   },
-...   {
-...     $project: {
-...       _id: 0,
-...       nombre: { $toUpper: "$nombre" },
-...       unidades: 1,
-...       precio: 1,
-...       empresa: "$fabricante",
-...       total: { $multiply: ["$precio", "$unidades"] }
-...     }
-...   }
-... ])
-[
-  {
-    unidades: 5,
-    precio: 246,
-    nombre: 'ERGONOMIC METAL BALL',
-    empresa: 'Seaboard',
-    total: 1230
-  },
-  {
-    unidades: 7,
-    precio: 253,
-    nombre: 'HANDMADE PLASTIC HAT',
-    empresa: "Dick's Sporting Goods",
-    total: 1771
-  },
-  {
-    unidades: 0,
-    precio: 94,
-    nombre: 'ERGONOMIC METAL TABLE',
-    empresa: 'Kelly Services',
-    total: 0
-  },
-  {
-    unidades: 0,
-    precio: 305,
-    nombre: 'PRACTICAL FROZEN CHIPS',
-    empresa: 'Delta Air Lines',
-    total: 0
-  },
-  {
-    unidades: 5,
-    precio: 129,
-    nombre: 'FANTASTIC METAL PANTS',
-    empresa: 'OneMain Holdings',
-    total: 645
-  },
-  {
-    unidades: 3,
-    precio: 111,
-    nombre: 'INTELLIGENT FROZEN SAUSAGES',
-    empresa: 'A.O. Smith',
-    total: 333
-  },
-  {
-    unidades: 5,
-    precio: 24,
-    nombre: 'RUSTIC PLASTIC MOUSE',
-    empresa: 'Orbital ATK',
-    total: 120
-  }
-]
-
-
-
-````
-
-8. Añadir un campo calculado que ponga el nombre del producto y el tipo concatenado con el operador $concat, y llamarlo "completo":
-
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { unidades: { $lt: 10 } }
-  },
-  {
-    $project: {
-      _id: 0,
-      nombre: { $toUpper: "$nombre" },
-      unidades: 1,
-      precio: 1,
-      empresa: "$fabricante",
-      total: { $multiply: ["$precio", "$unidades"] },
-      completo: { $concat: ["$nombre", " - ", "$tipo"] }
-    }
-  }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $lt: 10 } }
-...   },
-...   {
-...     $project: {
-...       _id: 0,
-...       nombre: { $toUpper: "$nombre" },
-...       unidades: 1,
-...       precio: 1,
-...       empresa: "$fabricante",
-...       total: { $multiply: ["$precio", "$unidades"] },
-...       completo: { $concat: ["$nombre", " - ", "$tipo"] }
-...     }
-...   }
-... ])
-[
-  {
-    unidades: 5,
-    precio: 246,
-    nombre: 'ERGONOMIC METAL BALL',
-    empresa: 'Seaboard',
-    total: 1230,
-    completo: 'Ergonomic Metal Ball - medio'
-  },
-  {
-    unidades: 7,
-    precio: 253,
-    nombre: 'HANDMADE PLASTIC HAT',
-    empresa: "Dick's Sporting Goods",
-    total: 1771,
-    completo: 'Handmade Plastic Hat - medio'
-  },
-  {
-    unidades: 0,
-    precio: 94,
-    nombre: 'ERGONOMIC METAL TABLE',
-    empresa: 'Kelly Services',
-    total: 0,
-    completo: 'Ergonomic Metal Table - avanzado'
-  },
-  {
-    unidades: 0,
-    precio: 305,
-    nombre: 'PRACTICAL FROZEN CHIPS',
-    empresa: 'Delta Air Lines',
-    total: 0,
-    completo: 'Practical Frozen Chips - medio'
-  },
-  {
-    unidades: 5,
-    precio: 129,
-    nombre: 'FANTASTIC METAL PANTS',
-    empresa: 'OneMain Holdings',
-    total: 645,
-    completo: 'Fantastic Metal Pants - basico'
-  },
-  {
-    unidades: 3,
-    precio: 111,
-    nombre: 'INTELLIGENT FROZEN SAUSAGES',
-    empresa: 'A.O. Smith',
-    total: 333,
-    completo: 'Intelligent Frozen Sausages - basico'
-  },
-  {
-    unidades: 5,
-    precio: 24,
-    nombre: 'RUSTIC PLASTIC MOUSE',
-    empresa: 'Orbital ATK',
-    total: 120,
-    completo: 'Rustic Plastic Mouse - avanzado'
-  }
-]
-
-
-
-````
-
-
-9. Ordenar el resultado por el campo "total":
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { unidades: { $lt: 10 } }
-  },
-  {
-    $project: {
-      _id: 0,
-      nombre: { $toUpper: "$nombre" },
-      unidades: 1,
-      precio: 1,
-      empresa: "$fabricante",
-      total: { $multiply: ["$precio", "$unidades"] },
-      completo: { $concat: ["$nombre", " - ", "$tipo"] }
-    }
-  },
-  {
-    $sort: { total: 1 }
-  }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { unidades: { $lt: 10 } }
-...   },
-...   {
-...     $project: {
-...       _id: 0,
-...       nombre: { $toUpper: "$nombre" },
-...       unidades: 1,
-...       precio: 1,
-...       empresa: "$fabricante",
-...       total: { $multiply: ["$precio", "$unidades"] },
-...       completo: { $concat: ["$nombre", " - ", "$tipo"] }
-...     }
-...   },
-...   {
-...     $sort: { total: 1 }
-...   }
-... ])
-[
-  {
-    unidades: 0,
-    precio: 94,
-    nombre: 'ERGONOMIC METAL TABLE',
-    empresa: 'Kelly Services',
-    total: 0,
-    completo: 'Ergonomic Metal Table - avanzado'
-  },
-  {
-    unidades: 0,
-    precio: 305,
-    nombre: 'PRACTICAL FROZEN CHIPS',
-    empresa: 'Delta Air Lines',
-    total: 0,
-    completo: 'Practical Frozen Chips - medio'
-  },
-  {
-    unidades: 5,
-    precio: 24,
-    nombre: 'RUSTIC PLASTIC MOUSE',
-    empresa: 'Orbital ATK',
-    total: 120,
-    completo: 'Rustic Plastic Mouse - avanzado'
-  },
-  {
-    unidades: 3,
-    precio: 111,
-    nombre: 'INTELLIGENT FROZEN SAUSAGES',
-    empresa: 'A.O. Smith',
-    total: 333,
-    completo: 'Intelligent Frozen Sausages - basico'
-  },
-  {
-    unidades: 5,
-    precio: 129,
-    nombre: 'FANTASTIC METAL PANTS',
-    empresa: 'OneMain Holdings',
-    total: 645,
-    completo: 'Fantastic Metal Pants - basico'
-  },
-  {
-    unidades: 5,
-    precio: 246,
-    nombre: 'ERGONOMIC METAL BALL',
-    empresa: 'Seaboard',
-    total: 1230,
-    completo: 'Ergonomic Metal Ball - medio'
-  },
-  {
-    unidades: 7,
-    precio: 253,
-    nombre: 'HANDMADE PLASTIC HAT',
-    empresa: "Dick's Sporting Goods",
-    total: 1771,
-    completo: 'Handmade Plastic Hat - medio'
-  }
-]
-
-
-
-````
-
-
-10. Averiguar el número de productos por tipo de producto:
-
-
-````json
-
-db.productos.aggregate([
-  {
-    $group: {
-      _id: "$tipo",
-      "Numero de Productos": { $count: {} }
-    }
-  }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $group: {
-...       _id: "$tipo",
-...       "Numero de Productos": { $count: {} }
-...     }
-...   }
-... ])
-[
-  { _id: 'medio', 'Numero de Productos': 25 },
-  { _id: 'basico', 'Numero de Productos': 24 },
-  { _id: 'avanzado', 'Numero de Productos': 18 }
-]
-
-
-````
-
-11. Añadir el valor mayor y el menor:
-
-
-````json
-
-db.productos.aggregate([
-  {
-    $group: {
-      _id: "$tipo",
-      "Numero de Productos": { $count: {} },
-      "Valor Mayor": { $max: "$precio" },
-      "Valor Menor": { $min: "$precio" }
-    }
-  }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $group: {
-...       _id: "$tipo",
-...       "Numero de Productos": { $count: {} },
-...       "Valor Mayor": { $max: "$precio" },
-...       "Valor Menor": { $min: "$precio" }
-...     }
-...   }
-... ])
-[
-  {
-    _id: 'medio',
-    'Numero de Productos': 25,
-    'Valor Mayor': 337,
-    'Valor Menor': 16
-  },
-  {
-    _id: 'basico',
-    'Numero de Productos': 24,
-    'Valor Mayor': 285,
-    'Valor Menor': 16
-  },
-  {
-    _id: 'avanzado',
-    'Numero de Productos': 18,
-    'Valor Mayor': 331,
-    'Valor Menor': 18
-  }
-]
-
-
-````
-
-
-12. Añadir el total de unidades por cada tipo:
-
-````json
-
-db.productos.aggregate([
-  {
-    $group: {
-      _id: "$tipo",
-      "Numero de Productos": { $count: {} },
-      "Valor Mayor": { $max: "$precio" },
-      "Valor Menor": { $min: "$precio" },
-      "Total de Unidades": { $sum: "$unidades" }
-    }
-  }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $group: {
-...       _id: "$tipo",
-...       "Numero de Productos": { $count: {} },
-...       "Valor Mayor": { $max: "$precio" },
-...       "Valor Menor": { $min: "$precio" },
-...       "Total de Unidades": { $sum: "$unidades" }
-...     }
-...   }
-... ])
-[
-  {
-    _id: 'avanzado',
-    'Numero de Productos': 18,
-    'Valor Mayor': 331,
-    'Valor Menor': 18,
-    'Total de Unidades': 773
-  },
-  {
-    _id: 'basico',
-    'Numero de Productos': 24,
-    'Valor Mayor': 285,
-    'Valor Menor': 16,
-    'Total de Unidades': 1067
-  },
-  {
-    _id: 'medio',
-    'Numero de Productos': 25,
-    'Valor Mayor': 337,
-    'Valor Menor': 16,
-    'Total de Unidades': 1224
-  }
-]
-
-
-
-````
-
-13. Con el operador $set y $substr, visualizar todos los datos del producto "Small Metal Tuna" y los primeros 5 caracteres del nombre:
-
-````json
-
-db.productos.aggregate([
-  {
-    $match: { nombre: "Small Metal Tuna" }
-  },
-  {
-    $set: {
-      _id: 1,
-      nombre: 1,
-      unidades: 1,
-      precio: 1,
-      fabricante: 1,
-      tipo: 1,
-      primeros_5_caracteres: { $substr: ["$nombre", 0, 5] }
-    }
-  }
-])
-
-
-````
-
-resultado
-
-````json
-
-
-Practicas> db.productos.aggregate([
-...   {
-...     $match: { nombre: "Small Metal Tuna" }
-...   },
-...   {
-...     $set: {
-...       _id: 1,
-...       nombre: 1,
-...       unidades: 1,
-...       precio: 1,
-...       fabricante: 1,
-...       tipo: 1,
-...       primeros_5_caracteres: { $substr: ["$nombre", 0, 5] }
-...     }
-...   }
-... ])
-[
-  {
-    _id: 1,
-    codigo: 55,
-    nombre: 1,
-    unidades: 1,
-    precio: 1,
-    fabricante: 1,
-    tipo: 1,
-    primeros_5_caracteres: 'Small'
-  }
-]
-
-
-
-
-````
-
-14. Crear una salida que tenga el nombre del artículo y el total (precio por unidades) y guardarlo en una colección denominada productos2:
-
-
-````json
-
-db.productos.aggregate([
-  {
-    $project: {
-      nombre: 1,
-      total: { $multiply: ["$precio", "$unidades"] }
-    }
-  },
-  {
-    $out: "productos2"
-  }
-])
-
-````
-
-15. Comprobar que se ha creado la colección productos2:
-
-
-
- ````json
-show collections
-
-````
-resultado
-
-````json
-Practicas> show collections
-productos
-productos2
-
-````
-
-16. Hacer un find para comprobar el resultado:
-
-````json
-db.productos2.find()
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos2.find()
-[
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce2'),
-    nombre: 'Fantastic Wooden Fish',
-    total: 27645
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce3'),
-    nombre: 'Rustic Concrete Pants',
-    total: 18414
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce4'),
-    nombre: 'Small Soft Fish',
-    total: 18144
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce5'),
-    nombre: 'Practical Soft Pants',
-    total: 2747
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce6'),
-    nombre: 'Ergonomic Metal Ball',
-    total: 1230
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce7'),
-    nombre: 'Small Steel Gloves',
-    total: 1665
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce8'),
-    nombre: 'Ergonomic Wooden Shirt',
-    total: 14994
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce9'),
-    nombre: 'Handmade Steel Chair',
-    total: 5392
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cea'),
-    nombre: 'Handcrafted Soft Gloves',
-    total: 4512
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ceb'),
-    nombre: 'Fantastic Concrete Salad',
-    total: 12985
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cec'),
-    nombre: 'Handmade Plastic Hat',
-    total: 1771
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ced'),
-    nombre: 'Refined Wooden Tuna',
-    total: 8480
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cee'),
-    nombre: 'Refined Concrete Salad',
-    total: 11610
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cef'),
-    nombre: 'Unbranded Soft Fish',
-    total: 9434
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf0'),
-    nombre: 'Small Concrete Fish',
-    total: 5040
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf1'),
-    nombre: 'Refined Concrete Bike',
-    total: 2700
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf2'),
-    nombre: 'Tasty Cotton Pants',
-    total: 3536
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf3'),
-    nombre: 'Incredible Granite Gloves',
-    total: 20590
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf4'),
-    nombre: 'Practical Metal Mouse',
-    total: 6650
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf5'),
-    nombre: 'Handcrafted Steel Chicken',
-    total: 6215
-  }
-]
-
-
-````
-
-17. Usar $cond y $project para visualizar el nombre del producto, el precio y un campo llamado "valoración" que diga “barato” si el precio es menor de 250 y “caro” si es mayor o igual:
-
-````json
-
-db.productos.aggregate([
-  {
-    $project: {
-      nombre: 1,
-      precio: 1,
-      valoración: {
-        $cond: {
-          if: { $lt: ["$precio", 250] },
-          then: "barato",
-          else: "caro"
+    $project:
+     
+      {
+        _id: 0,
+        titulo: 1,
+        precio: 1,
+        cantidad: 1,
+        "Nombre de la editorial": "$editorial",
+        "Total de ganancias": {
+          $multiply: ["$precio", "$cantidad"]
         }
+      }
+  },
+  {
+    $sort:
+    
+      {
+        precio: 1
+      }
+  }
+]
+```
+## #group. Agrupaciones
+[Agrupaciones](https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/)
+
+- Cuantos documentos hay por cada una de las editoriales
+
+```json
+[
+  {
+    $group:
+      {
+        _id: "$editorial",
+        "Numero Documento": {
+          $count: {}
+        }
+      }
+  }
+]
+```
+
+-- Cuantos documentos hay por cada una de las editoriales por numero de documentos de manera descendente
+
+
+
+
+
+-- Utilizando Mongo Atlas base de datos sample_airbnb
+-- Agrupar por tipo de propiedad, mostrando el numero de propiedades y 
+-- el numero de sus precios
+```json
+{
+  _id: '$property_type',
+  Numero: {
+    $count: {}
+  },
+  Media:
+    {
+      $avg:'price'
+    }
+}
+```
+
+- Operadores $set
+```json
+[
+  {
+    $group: {
+      _id: "$property_type",
+      Numero: {
+        $count: {}
+      },
+      Media: {
+        $avg: "$price"
+      }
+    }
+  },
+  {
+    $set:
+     
+      {
+        Media_Total: {
+          $trunc: "Media"
+        }
+      }
+  }
+]
+```
+```json
+[
+  {
+    $group: {
+      _id: "$property_type",
+      Numero: {
+        $count: {}
+      },
+      Media: {
+        $avg: "$price"
+      }
+    }
+  },
+  {
+    $set:
+    
+      {
+        Media_Total: {
+          $trunc: "Media"
+        }
+      }
+  },
+  {
+    $unset:
+     
+      ["Media", "Media_Total"]
+  }
+]
+```
+
+-- Quitando solo un campo
+```json
+[
+  {
+    $group: {
+      _id: "$property_type",
+      Numero: {
+        $count: {}
+      },
+      Media: {
+        $avg: "$price"
+      }
+    }
+  },
+  {
+    $set:
+     
+      {
+        Media_Total: {
+          $trunc: "Media"
+        }
+      }
+  },
+  {
+    $unset:
+     
+      "Media"
+  }
+]
+```
+-- Creando nuevas colecciones utilizadno el operador $out
+-- Nota: Debe ser el ultimo en nuestra agregacion 
+
+- Ejemplosn con operadores de comparacion y logicos
+```json
+[
+  {
+    $project: {
+      _id: 0,
+      price: 1,
+      room_type: 1,
+      caro: {
+        $gte: ["$price", 300]
+      },
+      medio: {
+        $and: [
+          {
+            $gte: ["$price", 100]
+          },
+          {
+            $lte: ["$price", 300]
+          }
+        ]
+      },
+      economico: {
+        $lte: ["$price", 100]
       }
     }
   }
-])
-
-````
-
-resultado
-
-````json
-
-Practicas> db.productos.aggregate([
-...   {
-...     $project: {
-...       nombre: 1,
-...       precio: 1,
-...       valoración: {
-...         $cond: {
-...           if: { $lt: ["$precio", 250] },
-...           then: "barato",
-...           else: "caro"
-...         }
-...       }
-...     }
-...   }
-... ])
+]
+```
+- $cond. Devuelve valores segun una condicion(es parecido a un operador ternario de un lenguaje de programacion)
+```json
 [
   {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce2'),
-    nombre: 'Fantastic Wooden Fish',
-    precio: 291,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce3'),
-    nombre: 'Rustic Concrete Pants',
-    precio: 279,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce4'),
-    nombre: 'Small Soft Fish',
-    precio: 189,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce5'),
-    nombre: 'Practical Soft Pants',
-    precio: 67,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce6'),
-    nombre: 'Ergonomic Metal Ball',
-    precio: 246,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce7'),
-    nombre: 'Small Steel Gloves',
-    precio: 37,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce8'),
-    nombre: 'Ergonomic Wooden Shirt',
-    precio: 238,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ce9'),
-    nombre: 'Handmade Steel Chair',
-    precio: 337,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cea'),
-    nombre: 'Handcrafted Soft Gloves',
-    precio: 282,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ceb'),
-    nombre: 'Fantastic Concrete Salad',
-    precio: 265,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cec'),
-    nombre: 'Handmade Plastic Hat',
-    precio: 253,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0ced'),
-    nombre: 'Refined Wooden Tuna',
-    precio: 212,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cee'),
-    nombre: 'Refined Concrete Salad',
-    precio: 129,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cef'),
-    nombre: 'Unbranded Soft Fish',
-    precio: 178,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf0'),
-    nombre: 'Small Concrete Fish',
-    precio: 126,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf1'),
-    nombre: 'Refined Concrete Bike',
-    precio: 180,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf2'),
-    nombre: 'Tasty Cotton Pants',
-    precio: 52,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf3'),
-    nombre: 'Incredible Granite Gloves',
-    precio: 290,
-    'valoración': 'caro'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf4'),
-    nombre: 'Practical Metal Mouse',
-    precio: 190,
-    'valoración': 'barato'
-  },
-  {
-    _id: ObjectId('67da3ae72a60e9029ecb0cf5'),
-    nombre: 'Handcrafted Steel Chicken',
-    precio: 113,
-    'valoración': 'barato'
+    $project:
+     
+      {
+        _id: 0,
+        price: 1,
+        name: 1,
+        room_type: 1,
+        caro: {
+          $cond: [
+            {
+              $gt: ["$price", 300]
+            },
+            "Si",
+            "NOOOOO."
+          ]
+        },
+        medio: {
+          $cond: [
+            {
+              $and: [
+                {
+                  $gte: ["$price", 100]
+                },
+                {
+                  $lte: ["$price", 300]
+                }
+              ]
+            },
+            "Si",
+            "No"
+          ]
+        },
+        barato: {
+          $cond: [
+            {
+              $lt: ["$price", 100]
+            },
+            "Si",
+            "No"
+          ]
+        }
+      }
   }
 ]
-
-````
+```
+- Views
+```json
+db.createView("ganacias_libros",
+  [
+  {
+    $match:
+     
+      {
+        editorial: "Biblio"
+      }
+  },
+  {
+    $project:
+     
+      {
+        _id: 0,
+        titulo: 1,
+        precio: 1,
+        cantidad: 1,
+        "Nombre de editorial": "$editorial",
+        "Total de ganancias": {
+          $multiply: ["$precio", "$cantidad"]
+        }
+      }
+  },
+  {
+    $sort:
+    
+      {
+        "Total de ganancias": -1
+      }
+  }
+]
+)
+```
