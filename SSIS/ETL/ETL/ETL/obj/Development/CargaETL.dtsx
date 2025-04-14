@@ -1,0 +1,1309 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/9/2025 8:47:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADRIAN"
+  DTS:CreatorName="ADRIAN\VICTUS"
+  DTS:DTSID="{C6BED3CD-206D-4B43-8781-E9A621CA6CC0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="CargaETL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{1B5B7188-A0EE-46F8-94F9-BD550440768A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.DATAMART_NORTHWIND.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4F7B9784-C7AB-4978-812E-4559637E48E3}"
+      DTS:ObjectName="ADRIAN\ADRIANCITO.DATAMART_NORTHWIND.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADRIAN\ADRIANCITO;User ID=sa;Initial Catalog=DATAMART_NORTHWIND;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-CargaETL-{4F7B9784-C7AB-4978-812E-4559637E48E3}ADRIAN\ADRIANCITO.DATAMART_NORTHWIND.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtsjeBk5w7keThBJmdvziCQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACWecBhe+npIEBd7iRLsrkk7Rr33wf2NOJJOXZov0RziwAAAAAOgAAAAAIAACAAAAC09x3Et4SW8b1FYUYXPbKIPLgCzO0XgClwBYnX0IlCqBAAAAAzcIYQoMLeMffS+jEcH7+uQAAAANkBLmcXXSTY2M2WXCebMVfzPRd9uS64wnUeYfJNe6+Pp0CqaSgu7QcSyJ8HTYG1NslOQGSFCcjfoULtdNnwPMs</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.NORTHWND.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4E42BBE6-948D-45FF-85F0-D90EC7AB938D}"
+      DTS:ObjectName="ADRIAN\ADRIANCITO.NORTHWND.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADRIAN\ADRIANCITO;User ID=sa;Initial Catalog=NORTHWND;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-CargaETL-{4E42BBE6-948D-45FF-85F0-D90EC7AB938D}ADRIAN\ADRIANCITO.NORTHWND.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtsjeBk5w7keThBJmdvziCQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACnH4PJ4LPyMRk1wKkOuCwUXAn0vNeNUlvJTjCcdgO77gAAAAAOgAAAAAIAACAAAAC/OwYvOM1vxBQJnyXDqd4yUtA7r+z4N8MBWST0P0oFwxAAAABVJodMt/L9R81tOhkYb2BTQAAAAKA0Y2n4+JIhKuTJavkGumWEy5KdByYF30nkj7aZoYH8mX9q04MCIoWMfGBWnNViuFQMGBhT2Sjcqe/qLzSDF00</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.StageNorthwind.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6341768C-77B7-472D-98DA-BB1AC0E2BEDB}"
+      DTS:ObjectName="ADRIAN\ADRIANCITO.StageNorthwind.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADRIAN\ADRIANCITO;User ID=sa;Initial Catalog=StageNorthwind;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-CargaETL-{6341768C-77B7-472D-98DA-BB1AC0E2BEDB}ADRIAN\ADRIANCITO.StageNorthwind.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtsjeBk5w7keThBJmdvziCQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADOBeezhGAHV7xbUFL45h4RaJxxnsFg4DTRykvNGACOtAAAAAAOgAAAAAIAACAAAADYxrH5PtyyAjq1UJZ4MrvpzMy/gVZ5FXqRNl2ID4nDDRAAAAAQijAbZeyLwcuiQYZ32vKuQAAAAHQOT6tDW3NhUXhE7RXzQQ/deHnyzfx9OYhcmaFVEl2d/qH6JgFg/xRsD+nwccd9dKrxkMV9vB+6C9KCTObOhi4</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga_DimProducto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7466E4BE-EC1A-4B32-9B42-7C9CAE36FF80}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga_DimProducto"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga_DimProducto\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Producto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_DimProducto\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ADRIAN\ADRIANCITO.DATAMART_NORTHWIND.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.DATAMART_NORTHWIND.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Producto_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Producto_Nombre"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Nombre]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_Nombre]" />
+                    <inputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Producto_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Producto_Codigo"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Codigo_Bkey]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_Codigo]" />
+                    <inputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CategoriaProducto_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="CategoriaProducto_Codigo"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Categoria_Nombre]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[CategoriaProducto_Codigo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Skey]"
+                      dataType="i4"
+                      name="Producto_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Codigo_Bkey]"
+                      dataType="i4"
+                      name="Producto_Codigo_Bkey" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="Producto_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Producto_Categoria_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Proveedor_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="Producto_Proveedor_Nombre" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_DimProducto\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_DimProducto\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_DimProducto\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_DimProducto\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stage_Producto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_DimProducto\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ADRIAN\ADRIANCITO.StageNorthwind.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.StageNorthwind.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_Codigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Producto_Codigo]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_Codigo]"
+                      name="Producto_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Producto_Nombre]"
+                      length="50"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_Nombre]"
+                      name="Producto_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_PUsuario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Producto_PUsuario]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[Producto_PUsuario]"
+                      name="Producto_PUsuario"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[CategoriaProducto_Codigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CategoriaProducto_Codigo]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[CategoriaProducto_Codigo]"
+                      name="CategoriaProducto_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ETLLoad]"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].Columns[ETLLoad]"
+                      name="ETLLoad"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Producto_Codigo]"
+                      dataType="i4"
+                      name="Producto_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Producto_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Producto_PUsuario]"
+                      dataType="numeric"
+                      name="Producto_PUsuario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CategoriaProducto_Codigo]"
+                      dataType="i4"
+                      name="CategoriaProducto_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      name="ETLLoad" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Producto_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Producto_Codigo]"
+                      name="Producto_Codigo" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Producto_Nombre]"
+                      name="Producto_Nombre" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Producto_PUsuario]"
+                      dataType="numeric"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Producto_PUsuario]"
+                      name="Producto_PUsuario"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CategoriaProducto_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CategoriaProducto_Codigo]"
+                      name="CategoriaProducto_Codigo" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ETLLoad]"
+                      name="ETLLoad" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga_DimProducto.Paths[OLE DB Source Output]"
+              endId="Package\Carga_DimProducto\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga_DimProducto\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Carga_Productos_Staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E31CB0BB-CC58-4FD2-BD63-20B8CF9655DE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga_Productos_Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga_Productos_Staging\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Carga_Productos_Staging\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Productos_Staging\Data Conversion.Inputs[Data Conversion Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Carga_Productos_Staging\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[ProductName_Converted]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[ProductName_Converted]"
+                      name="ProductName_Converted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Carga_Productos_Staging\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Productos_Staging\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Carga_Productos_Staging\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Carga_Productos_Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Output].Columns[ETLLoad]"
+                      name="ETLLoad"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Carga_Productos_Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Productos_Staging\Nortwnd Producto"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Nortwnd Producto"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_Productos_Staging\Nortwnd Producto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ADRIAN\ADRIANCITO.NORTHWND.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.NORTHWND.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      length="40"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[QuantityPerUnit]"
+                      length="20"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitsInStock]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitsInStock]"
+                      name="UnitsInStock"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ReorderLevel]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ReorderLevel]"
+                      name="ReorderLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[Discontinued]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[Discontinued]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[Discontinued]"
+                      name="Discontinued"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[UnitsInStock]"
+                      dataType="i2"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[UnitsOnOrder]"
+                      dataType="i2"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[ReorderLevel]"
+                      dataType="i2"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].ExternalColumns[Discontinued]"
+                      dataType="bool"
+                      name="Discontinued" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[UnitsInStock]"
+                      dataType="i2"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[UnitsOnOrder]"
+                      dataType="i2"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ReorderLevel]"
+                      dataType="i2"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Error Output].Columns[Discontinued]"
+                      name="Discontinued" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Productos_Staging\Stage Producto"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Stage Producto"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stage_Producto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_Productos_Staging\Stage Producto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ADRIAN\ADRIANCITO.StageNorthwind.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.StageNorthwind.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Codigo]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[Producto_PUsuario]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[CategoriaProducto_Codigo]"
+                      lineageId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].Columns[ProductName_Converted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="ProductName_Converted"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Nombre]"
+                      lineageId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[ProductName_Converted]" />
+                    <inputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].Columns[ETLLoad]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ETLLoad"
+                      externalMetadataColumnId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[ETLLoad]"
+                      lineageId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Output].Columns[ETLLoad]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Codigo]"
+                      dataType="i4"
+                      name="Producto_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[Producto_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Producto_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[Producto_PUsuario]"
+                      dataType="numeric"
+                      name="Producto_PUsuario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[CategoriaProducto_Codigo]"
+                      dataType="i4"
+                      name="CategoriaProducto_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input].ExternalColumns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      name="ETLLoad" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Productos_Staging\Stage Producto.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Stage Producto.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Productos_Staging\Stage Producto.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Productos_Staging\Stage Producto.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga_Productos_Staging.Paths[Data Conversion Output]"
+              endId="Package\Carga_Productos_Staging\Derived Column.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\Carga_Productos_Staging\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Carga_Productos_Staging.Paths[Derived Column Output]"
+              endId="Package\Carga_Productos_Staging\Stage Producto.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Carga_Productos_Staging\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Carga_Productos_Staging.Paths[OLE DB Source Output]"
+              endId="Package\Carga_Productos_Staging\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga_Productos_Staging\Nortwnd Producto.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Carga_Productos_Staging"
+          TopLeft="80,28" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Carga_DimProducto"
+          TopLeft="96,104" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carga_Productos_Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Carga_Productos_Staging\Nortwnd Producto"
+          TopLeft="62,32" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Carga_Productos_Staging\Stage Producto"
+          TopLeft="44,284" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Carga_Productos_Staging\Data Conversion"
+          TopLeft="79,111" />
+        <EdgeLayout
+          Id="Package\Carga_Productos_Staging.Paths[OLE DB Source Output]"
+          TopLeft="145.5,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,37"
+              Start="0,0"
+              End="14,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="4,18.5" />
+                  <mssgle:LineSegment
+                    End="10,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,18.5"
+                    Point2="14,18.5"
+                    Point3="14,22.5" />
+                  <mssgle:LineSegment
+                    End="14,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Carga_Productos_Staging\Derived Column"
+          TopLeft="61,191" />
+        <EdgeLayout
+          Id="Package\Carga_Productos_Staging.Paths[Data Conversion Output]"
+          TopLeft="159.5,153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.5,38"
+              Start="0,0"
+              End="-19.5,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="-4,19" />
+                  <mssgle:LineSegment
+                    End="-15.5,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.5,19"
+                    Point2="-19.5,19"
+                    Point3="-19.5,23" />
+                  <mssgle:LineSegment
+                    End="-19.5,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_Productos_Staging.Paths[Derived Column Output]"
+          TopLeft="140,233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.5,51"
+              Start="0,0"
+              End="-18.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="-4,25.5" />
+                  <mssgle:LineSegment
+                    End="-14.5,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.5,25.5"
+                    Point2="-18.5,25.5"
+                    Point3="-18.5,29.5" />
+                  <mssgle:LineSegment
+                    End="-18.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_Productos_Staging\Nortwnd Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_Productos_Staging\Stage Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Carga_DimProducto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Carga_DimProducto\OLE DB Source"
+          TopLeft="283,61" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Carga_DimProducto\OLE DB Destination"
+          TopLeft="347,203" />
+        <EdgeLayout
+          Id="Package\Carga_DimProducto.Paths[OLE DB Source Output]"
+          TopLeft="361.5,103">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74,100"
+              Start="0,0"
+              End="74,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46"
+                    Point2="0,50"
+                    Point3="4,50" />
+                  <mssgle:LineSegment
+                    End="70,50" />
+                  <mssgle:CubicBezierSegment
+                    Point1="70,50"
+                    Point2="74,50"
+                    Point3="74,54" />
+                  <mssgle:LineSegment
+                    End="74,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_DimProducto\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_DimProducto\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

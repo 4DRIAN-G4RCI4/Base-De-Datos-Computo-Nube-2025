@@ -1,0 +1,77 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2025 9:13:09 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADRIAN"
+  DTS:CreatorName="ADRIAN\VICTUS"
+  DTS:DTSID="{93ED447C-FB4E-41D5-9408-E08A61A95072}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{628E5149-E474-499F-A9C2-DC4CEB1C5A7C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.StageNorthwind.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4758AF67-0224-4FA7-8687-10DA310D4CBE}"
+      DTS:ObjectName="ADRIAN\ADRIANCITO.StageNorthwind.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADRIAN\ADRIANCITO;User ID=sa;Initial Catalog=StageNorthwind;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Package1-{4758AF67-0224-4FA7-8687-10DA310D4CBE}ADRIAN\ADRIANCITO.StageNorthwind.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtsjeBk5w7keThBJmdvziCQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACAtb0DAuqUOFAKuw3MgBMmtUABjErfogdbB+z+rDqrzQAAAAAOgAAAAAIAACAAAABOC8Fu/0p1CnAZ5vB4Ytx8BGM5PPmzgUBY/0CTURbElhAAAABlzR5BlnFUEEWglUKT5YyrQAAAAOK2tVBLgApr+2arE3cWq2MbaroDhiDY7bLkg5SVpwkkZAsHBTeP4p3Nq2Gcp6UMyTLkYgcjJd7BTSzmq31ywyc</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Limpiar_Stage_Northwind"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{C7A58DE2-BD36-44D1-B4C6-A93A925CE22F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpiar_Stage_Northwind"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4758AF67-0224-4FA7-8687-10DA310D4CBE}"
+          SQLTask:SqlStatementSource="Truncate table Stage_Categoria&#xA;&#xA;Truncate table Stage_Cliente&#xA;&#xA;Truncate table Stage_Empleado&#xA;&#xA;Truncate table Stage_Producto&#xA;&#xA;Truncate table Stage_Tiempo&#xA;&#xA;Truncate table Stage_Ventas&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Limpiar_Stage_Northwind"
+          TopLeft="198,91" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

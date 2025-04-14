@@ -1,0 +1,190 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/4/2025 1:23:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADRIAN"
+  DTS:CreatorName="ADRIAN\VICTUS"
+  DTS:DTSID="{EDC9966A-6B42-4B97-8C69-4A897D3373AC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="02-Conversion de Datos"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{66441373-A6AF-4632-B888-5C1A195F74CC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.AdventureWorksDW2016.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5D1D3ED2-E9F0-4B3F-AFDD-F2CE727EB0A4}"
+      DTS:ObjectName="ADRIAN\ADRIANCITO.AdventureWorksDW2016.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADRIAN\ADRIANCITO;User ID=sa;Initial Catalog=AdventureWorksDW2016;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-02-Conversion de Datos-{5D1D3ED2-E9F0-4B3F-AFDD-F2CE727EB0A4}ADRIAN\ADRIANCITO.AdventureWorksDW2016.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtsjeBk5w7keThBJmdvziCQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABRnJITDRmHSktv7/nF9rt+hQZ2j4zHwPs/ysQeqlrm7gAAAAAOgAAAAAIAACAAAABUBfNqTvEdHk5FZ2QDTVNWsF173aD5ArnIY2Rq3OMIdxAAAADHXV5VQmcD/WDIACnTSKUhQAAAAODw7qcPL73O3QDhXlDNyDa6zpAEfsmKihyG2FScCx364OVCFtFZwLq9x24WwsS1tBa2dEutaSAe2ma6l2pAeu8</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADRIAN\ADRIANCITO.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C0A71CF9-828A-41F2-8059-BFF8335E9A5A}"
+      DTS:ObjectName="ADRIAN\ADRIANCITO.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADRIAN\ADRIANCITO;User ID=sa;Provider=SQLOLEDB.1;Persist Security Info=True;Initial File Name=C:\Users\VICTUS\Documents\basededatoscomputonuberepo\SSIS\ETL\Data\3.1.-+Data+Product.csv;Application Name=SSIS-02-Conversion de Datos-{C0A71CF9-828A-41F2-8059-BFF8335E9A5A}ADRIAN\ADRIANCITO.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtsjeBk5w7keThBJmdvziCQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABpHI8Zm7G+Gg/Ndavb2vyoD1GyInNTXgc7tLWVA1XbMgAAAAAOgAAAAAIAACAAAACnRKcv9AAyjlTLgvqyrxTLWLd0jg0qzOjoKQiZADg7axAAAACTiG3S0UpPzq6eBZZ22HlxQAAAAH0AOa/uLm6UxlmT0PFD7jxlxUu6uadd8tD8li4ltsEvcUiBAvzynTD5uCQZWcnpH3TwosBy2M+8+WVKOWKsC50</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA ARCHIVO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C9D957B5-065C-4ED1-A71C-1D6C4868EC9D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA ARCHIVO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA ARCHIVO\CARGA CSV"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="CARGA CSV"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA ARCHIVO\CARGA CSV.Connections[OleDbConnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA ARCHIVO\CARGA CSV.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\CARGA ARCHIVO\CARGA CSV.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA ARCHIVO\CARGA CSV.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA ARCHIVO\CARGA CSV.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA ARCHIVO\CARGA CSV.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA ARCHIVO\CARGA CSV.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\CARGA ARCHIVO"
+          TopLeft="611,102" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA ARCHIVO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\CARGA ARCHIVO\CARGA CSV"
+          TopLeft="684,32" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

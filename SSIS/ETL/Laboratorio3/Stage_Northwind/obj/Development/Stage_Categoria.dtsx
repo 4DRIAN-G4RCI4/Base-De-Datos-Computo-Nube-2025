@@ -1,0 +1,1554 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/10/2025 11:12:36 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-L2BOJD4"
+  DTS:CreatorName="DESKTOP-L2BOJD4\CESAR"
+  DTS:DTSID="{1FF0E6D9-2CE3-456E-9D9B-1275AF2610FE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Stage_Categoria"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{8E4C8F32-754B-460C-9880-EE4D0AFD43ED}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-L2BOJD4.NORTHWND.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{148AAF3B-362F-4F6F-973D-FD9B64AA33F6}"
+      DTS:ObjectName="DESKTOP-L2BOJD4.NORTHWND.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-L2BOJD4;User ID=sa;Initial Catalog=NORTHWND;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Stage_Categoria-{148AAF3B-362F-4F6F-973D-FD9B64AA33F6}DESKTOP-L2BOJD4.NORTHWND.sa;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-L2BOJD4.StageNorthwind.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7E06428C-EB28-45E8-A685-2C6590DC6D37}"
+      DTS:ObjectName="DESKTOP-L2BOJD4.StageNorthwind.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-L2BOJD4;User ID=sa;Initial Catalog=StageNorthwind;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Stage_Categoria-{7E06428C-EB28-45E8-A685-2C6590DC6D37}DESKTOP-L2BOJD4.StageNorthwind.sa;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_STAGE_NORTHWIND"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F74EF432-40F9-419D-B598-14194132D0E6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_STAGE_NORTHWIND"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="CONVERSION_TIPOS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Inputs[Data Conversion Input].Columns[CategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CategoryName"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Output].Columns[CategoryName_Nuevo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Output].Columns[CategoryName_Nuevo]"
+                      name="CategoryName_Nuevo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="FILTRA LAS CATEGORIAS NUEVAS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Inputs[Conditional Split Input].Columns[Categoria_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Categoria_Codigo"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[Categoria_Codigo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[CATEGORIAS_NUEVAS]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="CATEGORIAS_NUEVAS"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[Categoria_Codigo]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(Categoria_Codigo)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="LEFT_JOIN"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[CategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CategoryName"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryName]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[ETLLoad]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ETLLoad"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[ETLLoad]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[CategoryName_Nuevo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="CategoryName_Nuevo"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryName_Nuevo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input].Columns[Categoria_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Categoria_Codigo"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[Categoria_Codigo]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input].Columns[Categoria_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Categoria_Nombre"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[Categoria_Nombre]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input].Columns[ETLLoad]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ETLLoad"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[ETLLoad]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[CategoryID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryName]"
+                      name="CategoryName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[CategoryName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[ETLLoad]"
+                      name="ETLLoad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[ETLLoad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryName_Nuevo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryName_Nuevo]"
+                      name="CategoryName_Nuevo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input].Columns[CategoryName_Nuevo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[Categoria_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[Categoria_Codigo]"
+                      name="Categoria_Codigo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input].Columns[Categoria_Codigo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[Categoria_Nombre]"
+                      name="Categoria_Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input].Columns[Categoria_Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[ETLLoad (1)]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[ETLLoad (1)]"
+                      name="ETLLoad (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input].Columns[ETLLoad]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\Multicast.Outputs[Multicast Output 2]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="NORTHWIND_CATEGORIES"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [CategoryID]
+      ,[CategoryName],
+	  GETDATE()as ETLLoad
+  FROM [dbo].[Categories]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-L2BOJD4.NORTHWND.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-L2BOJD4.NORTHWND.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      name="CategoryName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].ExternalColumns[ETLLoad]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[ETLLoad]"
+                      name="ETLLoad"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      dataType="wstr"
+                      length="15"
+                      name="CategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].ExternalColumns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      name="ETLLoad" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      name="CategoryName" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[ETLLoad]"
+                      name="ETLLoad" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR_CATEGORIES"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Inputs[Sort Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Inputs[Sort Input].Columns[CategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CategoryName"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Inputs[Sort Input].Columns[ETLLoad]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ETLLoad"
+                      lineageId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[ETLLoad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Inputs[Sort Input].Columns[CategoryName_Nuevo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="CategoryName_Nuevo"
+                      lineageId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Output].Columns[CategoryName_Nuevo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryName]"
+                      name="CategoryName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[CategoryName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[ETLLoad]"
+                      name="ETLLoad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output].Columns[ETLLoad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryName_Nuevo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output].Columns[CategoryName_Nuevo]"
+                      name="CategoryName_Nuevo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Output].Columns[CategoryName_Nuevo]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR_STAGE_CATEGORIA"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Inputs[Sort Input].Columns[Categoria_Codigo]"
+                      cachedDataType="i4"
+                      cachedName="Categoria_Codigo"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Codigo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Inputs[Sort Input].Columns[Categoria_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Categoria_Nombre"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Inputs[Sort Input].Columns[ETLLoad]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ETLLoad"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[ETLLoad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[Categoria_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[Categoria_Codigo]"
+                      name="Categoria_Codigo"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Codigo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[Categoria_Nombre]"
+                      name="Categoria_Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output].Columns[ETLLoad]"
+                      name="ETLLoad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[ETLLoad]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="STAGE_NORTHWIND_CATEGORIA"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stage_Categoria]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-L2BOJD4.StageNorthwind.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-L2BOJD4.StageNorthwind.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Codigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[Categoria_Codigo]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Codigo]"
+                      name="Categoria_Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[Categoria_Nombre]"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[Categoria_Nombre]"
+                      name="Categoria_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[ETLLoad]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[ETLLoad]"
+                      name="ETLLoad"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[Categoria_Codigo]"
+                      dataType="i4"
+                      name="Categoria_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Categoria_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      name="ETLLoad" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[Categoria_Codigo]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[Categoria_Codigo]"
+                      name="Categoria_Codigo" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[Categoria_Nombre]"
+                      name="Categoria_Nombre" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ETLLoad]"
+                      name="ETLLoad" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="STAGE_NORTHWIND_CATEGORIAS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stage_Categoria]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-L2BOJD4.StageNorthwind.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-L2BOJD4.StageNorthwind.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].ExternalColumns[Categoria_Codigo]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].Columns[CategoryName_Nuevo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="CategoryName_Nuevo"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].ExternalColumns[Categoria_Nombre]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[CategoryName_Nuevo]" />
+                    <inputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].Columns[ETLLoad]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ETLLoad"
+                      externalMetadataColumnId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].ExternalColumns[ETLLoad]"
+                      lineageId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output].Columns[ETLLoad]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].ExternalColumns[Categoria_Codigo]"
+                      dataType="i4"
+                      name="Categoria_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].ExternalColumns[Categoria_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Categoria_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input].ExternalColumns[ETLLoad]"
+                      dataType="dbTimeStamp"
+                      name="ETLLoad" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[CATEGORIAS_NUEVAS]"
+              endId="Package\DF_STAGE_NORTHWIND\Multicast.Inputs[Multicast Input 1]"
+              name="CATEGORIAS_NUEVAS"
+              startId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Outputs[CATEGORIAS_NUEVAS]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[Data Conversion Output]"
+              endId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[Merge Join Output]"
+              endId="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[Multicast Output 1]"
+              endId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\DF_STAGE_NORTHWIND\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[OLE DB Source Output]"
+              endId="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[OLE DB Source Output1]"
+              endId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[Sort Output]"
+              endId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES.Outputs[Sort Output]" />
+            <path
+              refId="Package\DF_STAGE_NORTHWIND.Paths[Sort Output1]"
+              endId="Package\DF_STAGE_NORTHWIND\LEFT_JOIN.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="204,42"
+          Id="Package\DF_STAGE_NORTHWIND"
+          TopLeft="377.49997937431,104.866665937437" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF_STAGE_NORTHWIND">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="251,42"
+          Id="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA"
+          TopLeft="454.166641852095,24.2666664979193" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\DF_STAGE_NORTHWIND\ORDENAR_CATEGORIES"
+          TopLeft="201.666655648086,170.733332146075" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\DF_STAGE_NORTHWIND\Multicast"
+          TopLeft="342.999979784092,281.999998011192" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS"
+          TopLeft="49.1666639803185,279.333331657913" />
+        <NodeLayout
+          Size="253,42"
+          Id="Package\DF_STAGE_NORTHWIND\FILTRA LAS CATEGORIAS NUEVAS"
+          TopLeft="613.333299822279,219.266665141914" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\DF_STAGE_NORTHWIND\LEFT_JOIN"
+          TopLeft="463.333308017917,188.066665358875" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES"
+          TopLeft="205.833322087096,3.5527136788005E-15" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\DF_STAGE_NORTHWIND\ORDENAR_STAGE_CATEGORIA"
+          TopLeft="484.999973500769,111.799999222557" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\DF_STAGE_NORTHWIND\CONVERSION_TIPOS"
+          TopLeft="216.666654828523,86.6666660639975" />
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[Sort Output1]"
+          TopLeft="604.199973500769,153.399999222557">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-74.066665482852,34.6666661363178"
+              Start="0,0"
+              End="-74.066665482852,27.1666661363178">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3333330681589" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3333330681589"
+                    Point2="0,17.3333330681589"
+                    Point3="-4,17.3333330681589" />
+                  <mssgle:LineSegment
+                    End="-70.066665482852,17.3333330681589" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-70.066665482852,17.3333330681589"
+                    Point2="-74.066665482852,17.3333330681589"
+                    Point3="-74.066665482852,21.3333330681589" />
+                  <mssgle:LineSegment
+                    End="-74.066665482852,27.1666661363178" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[Sort Output]"
+          TopLeft="405.666655648086,191.533332146075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.666652369831,17.3333332127997"
+              Start="0,0"
+              End="50.166652369831,17.3333332127997">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.8333261849155,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.8333261849155,0"
+                    Point2="28.8333261849155,0"
+                    Point3="28.8333261849155,4" />
+                  <mssgle:LineSegment
+                    End="28.8333261849155,13.3333332127997" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.8333261849155,13.3333332127997"
+                    Point2="28.8333261849155,17.3333332127997"
+                    Point3="32.8333261849155,17.3333332127997" />
+                  <mssgle:LineSegment
+                    End="50.166652369831,17.3333332127997" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[OLE DB Source Output1]"
+          TopLeft="579.766641852095,65.8666664979193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.433331648674,45.9333327246374"
+              Start="0,0"
+              End="24.433331648674,38.4333327246374">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.9666663623187" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.9666663623187"
+                    Point2="0,22.9666663623187"
+                    Point3="4,22.9666663623187" />
+                  <mssgle:LineSegment
+                    End="20.433331648674,22.9666663623187" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.433331648674,22.9666663623187"
+                    Point2="24.433331648674,22.9666663623187"
+                    Point3="24.433331648674,26.9666663623187" />
+                  <mssgle:LineSegment
+                    End="24.433331648674,38.4333327246374" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[OLE DB Source Output]"
+          TopLeft="311.849988457809,41.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.0666660639975"
+              Start="0,0"
+              End="0,37.5666660639975">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5666660639975" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[Multicast Output 1]"
+          TopLeft="342.999979784092,301.666664834553">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35.8333158037735,0"
+              Start="0,0"
+              End="-28.3333158037735,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-28.3333158037735,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[Merge Join Output]"
+          TopLeft="596.933308017917,196.766665141914">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142.799991804362,22.5"
+              Start="0,0"
+              End="142.799991804362,15">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="138.799991804362,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138.799991804362,0"
+                    Point2="142.799991804362,0"
+                    Point3="142.799991804362,4" />
+                  <mssgle:LineSegment
+                    End="142.799991804362,15" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[Data Conversion Output]"
+          TopLeft="306.566655238304,128.266666063997">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4666660820774"
+              Start="0,0"
+              End="0,34.9666660820774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9666660820774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_STAGE_NORTHWIND.Paths[CATEGORIAS_NUEVAS]"
+          TopLeft="613.333299822279,240.266665141914">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-151.333320038187,62.733332869278"
+              Start="0,0"
+              End="-143.833320038187,62.733332869278">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-71.6666600190935,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-71.6666600190935,0"
+                    Point2="-75.6666600190935,0"
+                    Point3="-75.6666600190935,4" />
+                  <mssgle:LineSegment
+                    End="-75.6666600190935,58.733332869278" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-75.6666600190935,58.733332869278"
+                    Point2="-75.6666600190935,62.733332869278"
+                    Point3="-79.6666600190935,62.733332869278" />
+                  <mssgle:LineSegment
+                    End="-143.833320038187,62.733332869278" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-126.661660019093,-16.88671875,101.99,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_STAGE_NORTHWIND\STAGE_NORTHWIND_CATEGORIAS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_STAGE_NORTHWIND\NORTHWIND_CATEGORIES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
